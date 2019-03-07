@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:12:59 by amontano          #+#    #+#             */
-/*   Updated: 2019/03/06 21:56:48 by amontano         ###   ########.fr       */
+/*   Updated: 2019/03/06 22:13:06 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int hook_mouse_up(int button, int x, int y, t_mlx *mlx)
 	(void)x;
 	(void)y;
 	mlx->mouse->is_down &= ((mlx->mouse->is_down & 0x30) | ~(1 << button));
+	if (button == 2)
+		mlx->color_current = mlx->color_1;
+	else if (button == 1)
+		mlx->color_current = mlx->color_2;
 	return (0);
 }
 
@@ -45,7 +49,7 @@ int hook_mouse_move(int x, int y, t_mlx *mlx)
 	mlx->mouse->prev_y = mlx->mouse->y;
 	mlx->mouse->x = x;
 	mlx->mouse->y = y;
-	if (mlx->mode == 0 && mlx->mouse->is_down)
+	if (mlx->mode == 0 && mlx->mouse->is_down > 0 && mlx->mouse->is_down < 7)
 		img_set_pixel(mlx->img, x, y, mlx->color_current);
 	return (0);
 }
