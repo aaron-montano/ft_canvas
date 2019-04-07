@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 21:17:41 by amontano          #+#    #+#             */
-/*   Updated: 2018/09/13 23:53:12 by ytran            ###   ########.fr       */
+/*   Updated: 2019/03/07 12:01:24 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define LIBFT_H
 # include <string.h>
 # include "get_next_line.h"
+# include "ft_stack.h"
+
+typedef struct s_node
+{
+	void			*content;
+	struct s_node	*next;
+}				t_node;
 
 typedef struct	s_list
 {
@@ -94,5 +101,5 @@ char			*ft_strcapitalize(char *str);
 void			ft_swap(int *a, int *b);
 void			ft_swap_d(double *a, double *b);
 char			*ft_ftoa(double f, unsigned int acc);
-
+t_node			*new_node(void *content);
 #endif

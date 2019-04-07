@@ -6,7 +6,7 @@
 #    By: amontano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 21:04:13 by amontano          #+#    #+#              #
-#    Updated: 2019/03/06 20:03:22 by amontano         ###   ########.fr        #
+#    Updated: 2019/03/07 11:52:23 by amontano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SOURCE = ft_strjoin.c ft_putnbr_fd.c ft_putendl_fd.c ft_putendl.c \
 		 ft_lstmap.c ft_lstiter.c ft_lstdelone.c ft_lstdel.c ft_lstnew.c \
 		 ft_wordcount.c ft_strcapitalize.c get_next_line.c ft_strjoin.c \
 		 ft_lstrev.c ft_lstcount.c ft_abs.c ft_wordcount_d.c \
-		 ft_listaddend.c ft_swap.c ft_swap_d.c ft_ftoa.c\
+		 ft_listaddend.c ft_swap.c ft_swap_d.c ft_ftoa.c ft_stack.c		\
+		 ft_node.c	\
 
 SRCDIR = ./src
 OBJDIR = ./obj

@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:54:21 by amontano          #+#    #+#             */
-/*   Updated: 2019/03/06 20:35:17 by amontano         ###   ########.fr       */
+/*   Updated: 2019/03/07 12:28:48 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,16 @@ void	img_set_pixel(t_img *img, int x, int y, int color)
 	*(int *)(img->ptr + ((x + (y * WIN_W)) * img->bpp)) = color;
 }
 
+void	fill_img(t_img *img, int color)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < WIN_W)
+	{
+		y = -1;
+		while (++y < WIN_H)
+			img_set_pixel(img, x, y, color);
+	}
+}

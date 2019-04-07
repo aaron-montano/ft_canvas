@@ -6,14 +6,13 @@
 #    By: amontano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/06 16:54:47 by amontano          #+#    #+#              #
-#    Updated: 2019/03/06 20:57:32 by amontano         ###   ########.fr        #
+#    Updated: 2019/03/07 12:36:49 by amontano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_canvas
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-
+CFLAGS = -Wall -Werror -Wextra -g
 FRAMEWORKS = -framework OpenGL -framework Appkit
 SRCDIR = ./src
 OBJDIR = ./obj
@@ -27,6 +26,9 @@ SOURCE = main.c		\
 		 mouse.c	\
 		 img.c		\
 		 render.c	\
+		 keyboard.c	\
+		 draw.c		\
+		 frame_buffer.c	\
 
 
 SRC = $(addprefix $(SRCDIR)/, $(SOURCE))
