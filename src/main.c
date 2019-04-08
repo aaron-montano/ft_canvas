@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:26:46 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/06 23:04:49 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:56:20 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ int		main(void)
 
 	if (!(mlx = init()))
 		error("mlx failed to init");
-	mlx_hook(mlx->win, 3, 0, hook_key_up, mlx);
 	clear_img(mlx->img);
 	fill_img(mlx->img, 0xe0e0e0);
 	update_buf(mlx);
 	mlx->color_1 = 0x000000;
 	mlx->color_2 = 0xFF00FF;
+	mlx_hook(mlx->win, 3, 0, hook_key_up, mlx);
 	mlx_hook(mlx->win, 4, 0, hook_mouse_down, mlx);
 	mlx_hook(mlx->win, 5, 0, hook_mouse_up, mlx);
 	mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);

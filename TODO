@@ -1,6 +1,8 @@
 
 [X] UNDO implemented with "save-state" stack
-
-[ ] REDO implemented with "save-state stack
- 
+[X] REDO implemented with "save-state stack
+[X] Ellipse tool
+[ ] Bucket Tool
+[ ] Color Picker
+[ ] eraser tool
 [ ] 

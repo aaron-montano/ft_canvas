@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 23:23:02 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/06 21:53:43 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/07 14:04:46 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	hook_key_up(int button, t_mlx *mlx)
 		mlx->mode = 1;
 	if (button == KEY_3)
 		mlx->mode = 2;
+	if (button == KEY_4)
+		mlx->mode = 3;
 	if (button == KEY_Z)
 		undo(mlx);
 	if (button == KEY_Y)

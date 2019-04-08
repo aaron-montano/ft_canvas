@@ -101,6 +101,8 @@ int 			hook_key_up(int button, t_mlx *mlx);
 void 			fill_brush_radius(t_img *img, int x, int y, int color, int radius);
 void			draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2);
 void			draw_rectangle(t_mlx *mlx, int x1, int x2, int y1, int y2);
+void			get_ellipse_params(t_mlx *mlx, int x1, int y1, int x2, int y2);
+void			draw_ellipse(t_mlx *mlx, int cx, int cy, int rx, int ry);
 
 /*
 ** frame_buffer.c

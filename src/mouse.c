@@ -48,6 +48,9 @@ int	hook_mouse_up(int button, int x, int y, t_mlx *mlx)
 	else if (mlx->mode == 2)
 		draw_rectangle(mlx, mlx->mouse->last_clicked_x, \
 						mlx->mouse->last_clicked_y, x, y);
+	else if (mlx->mode == 3)
+		get_ellipse_params(mlx, mlx->mouse->last_clicked_x, \
+						 mlx->mouse->last_clicked_y, x, y);
 	update_buf(mlx);
 	return (0);
 }
