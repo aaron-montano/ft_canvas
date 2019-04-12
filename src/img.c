@@ -28,13 +28,13 @@ void	clear_img(t_img *img)
 	ft_bzero(img->ptr, WIN_W * WIN_H * img->bpp);
 }
 
-t_img	*new_img(t_mlx *mlx)
+t_img	*new_img(t_mlx *mlx, int w, int h)
 {
 	t_img	*img;
 
 	if (!(img = malloc(sizeof(t_img))))
 		return (NULL);
-	if ((img->img = mlx_new_image(mlx->mlx, WIN_W, WIN_H)) == NULL)
+	if ((img->img = mlx_new_image(mlx->mlx, w, h)) == NULL)
 		return (del_img(mlx, img));
 	img->ptr = \
 		mlx_get_data_addr(img->img, &img->bpp, &img->stride, &img->endian);
@@ -44,6 +44,7 @@ t_img	*new_img(t_mlx *mlx)
 
 void	img_set_pixel(t_img *img, int x, int y, int color)
 {
+	
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return ;
 	*(int *)(img->ptr + ((x + (y * WIN_W)) * img->bpp)) = color;

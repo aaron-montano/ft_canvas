@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:35:00 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/07 00:03:29 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/11 23:16:26 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,26 @@
 # include <stdlib.h>
 
 # include "libft.h"
-//# include "keys.h"
+# include "keys.h"
 # include "mlx.h"
 
 # define WIN_W 1600
 # define WIN_H 900
+# define BRUSH 0
+# define LINE 1
+# define RECTANGLE 2
+# define ELLIPSE 3
+# define BUCKET 4
+# define COLOR_PICK 5
+# define PALLET "./icons/colormap_hex.XPM"
+# define PALLET_H 199
+# define PALLET_W 234
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}				t_point;
 
 typedef struct	s_mouse
 {
@@ -53,11 +68,18 @@ typedef struct	s_mlx
 	int			color_1;
 	int			color_2;
 	int			color_current;
+
+	t_img		*color_gui;
+	int			color_gui_on;
+	int			pw;
+	int			ph;
+	int			brush_size;
+
 	t_stack		*buf;
 	t_stack		*redo_buf;
 	int			action_status;
-	int			mode; // 0-brush 1-line 2-rectangle 3-ellipse
-
+	int			mode; // 0-brush 1-line 2-rectangle 3-ellipse 4-bucket 5-color_pick 6-color_pick_gui
+	int			prevMode;
 }				t_mlx;
 
 /*
@@ -66,7 +88,7 @@ typedef struct	s_mlx
 void			img_set_pixel(t_img *img, int x, int y, int color);
 void			clear_img(t_img *img);
 t_img			*del_img(t_mlx *mlx, t_img *img);
-t_img			*new_img(t_mlx *mlx);
+t_img			*new_img(t_mlx *mlx, int w, int h);
 void			fill_img(t_img *img, int color);
 
 /*
@@ -103,6 +125,7 @@ void			draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2);
 void			draw_rectangle(t_mlx *mlx, int x1, int x2, int y1, int y2);
 void			get_ellipse_params(t_mlx *mlx, int x1, int y1, int x2, int y2);
 void			draw_ellipse(t_mlx *mlx, int cx, int cy, int rx, int ry);
+void			draw_bucket(t_mlx *mlx, int x, int y);
 
 /*
 ** frame_buffer.c
@@ -112,4 +135,12 @@ void			redo(t_mlx *mlx);
 void			stack_dispose(t_mlx *mlx, t_stack *stack);
 void			update_buf(t_mlx *mlx);
 void			set_mlx_img_ptr(t_mlx *mlx);
+
+/*
+** color_pick_gui.c
+*/
+void    color_pick(t_mlx *mlx, int x, int y, int button);
+void    deploy_color_gui(t_mlx *mlx);
+void    hide_color_gui(t_mlx *mlx);
+
 #endif

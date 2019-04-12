@@ -2,7 +2,7 @@
 [X] UNDO implemented with "save-state" stack
 [X] REDO implemented with "save-state stack
 [X] Ellipse tool
-[ ] Bucket Tool
-[ ] Color Picker
-[ ] eraser tool
-[ ] 
+[x] Bucket Tool --almost
+[ ] UI
+[ ] Color Picker --trivial
+[ ] eraser tool --trivial

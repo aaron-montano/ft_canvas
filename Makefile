@@ -29,6 +29,7 @@ SOURCE = main.c		\
 		 keyboard.c	\
 		 draw.c		\
 		 frame_buffer.c	\
+		 color_pick_gui.c \
 
 
 SRC = $(addprefix $(SRCDIR)/, $(SOURCE))

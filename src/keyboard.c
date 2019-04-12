@@ -25,14 +25,22 @@ int	hook_key_up(int button, t_mlx *mlx)
 		mlx->mode = 2;
 	if (button == KEY_4)
 		mlx->mode = 3;
+	if (button == KEY_5)
+		mlx->mode = 4;
 	if (button == KEY_Z)
 		undo(mlx);
 	if (button == KEY_Y)
 		redo(mlx);
+	if (button == KEY_NUM_PLUS)
+		mlx->brush_size++;
+	if (button == KEY_NUM_MINUS && mlx->brush_size > 0)
+		mlx->brush_size--;
 	if (button == 42)
 	{
 		fill_img(mlx->img, 0xe0e0e0);
 		update_buf(mlx);
 	}
+	if (button == KEY_SPACE)
+		!mlx->color_gui_on ? deploy_color_gui(mlx) : hide_color_gui(mlx);
 	return (0);
 }

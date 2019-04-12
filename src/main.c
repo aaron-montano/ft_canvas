@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "ft_canvas.h"
 
 int		hook_close(void)
@@ -49,14 +47,19 @@ t_mlx	*init(void)
 	if (!(mlx->mlx = mlx_init())											\
 			|| (!(mlx->win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, 		\
 						"ft_canvas -- amontano")))							\
-			|| (!(mlx->img = new_img(mlx)))									\
+			|| (!(mlx->img = new_img(mlx, WIN_W, WIN_H)))					\
 			|| (!(mlx->mouse = (t_mouse *)ft_memalloc(sizeof(t_mouse))))	\
 			|| (!(mlx->buf = stack_init()))									\
-			|| (!(mlx->redo_buf = stack_init())))
+			|| (!(mlx->redo_buf = stack_init()))							\
+			|| (!(mlx->color_gui = new_img(mlx, PALLET_W, PALLET_H)))		\
+			|| (!(mlx->color_gui->img = mlx_xpm_file_to_image(mlx->mlx, PALLET, &mlx->pw, &mlx->ph)))
+		)
 	{
 		ft_putendl("mlx falied to init");
 		return (mlx_dispose(mlx));
 	}
+	mlx->brush_size = 1;
+	mlx->color_gui_on = 0;
 	return (mlx);
 }
 

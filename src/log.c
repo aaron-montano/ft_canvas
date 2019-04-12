@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   log.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 20:50:19 by amontano          #+#    #+#             */
-/*   Updated: 2019/03/07 12:33:38 by amontano         ###   ########.fr       */
+/*   Created: 2019/04/11 20:18:29 by amontano          #+#    #+#             */
+/*   Updated: 2019/04/11 20:18:30 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_canvas.h"
 
-int	render(t_mlx *mlx)
+#include "../includes/ft_canvas.h"
+
+
+void	dump_to_console(t_mlx *params)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
-	if (mlx->color_gui_on)
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->color_gui->img, 0, 0);
-	return (0);
+	system("clear");
 }

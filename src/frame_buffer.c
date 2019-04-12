@@ -18,7 +18,7 @@ void	update_buf(t_mlx *mlx)
 	void	*v;
 
 	v = (void *)mlx->img;
-	n_img = new_img(mlx);
+	n_img = new_img(mlx, WIN_W, WIN_H);
 	n_img->ptr = (char *)ft_memcpy(n_img->ptr, mlx->img->ptr, \
 			WIN_H * WIN_W * 4);
 	push(mlx->buf, v);
