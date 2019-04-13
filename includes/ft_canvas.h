@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:35:00 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/11 23:16:26 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/13 00:27:14 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 # define RECTANGLE 2
 # define ELLIPSE 3
 # define BUCKET 4
-# define COLOR_PICK 5
-# define PALLET "./icons/colormap_hex.XPM"
+# define COLOR_PICK_GUI 5
+# define COLOR_PICK	6
+# define PALLET "./icons/colormap_hex.xpm"
 # define PALLET_H 199
 # define PALLET_W 234
 
@@ -70,7 +71,7 @@ typedef struct	s_mlx
 	int			color_current;
 
 	t_img		*color_gui;
-	int			color_gui_on;
+	int			color_gui_on;		
 	int			pw;
 	int			ph;
 	int			brush_size;
@@ -116,7 +117,7 @@ int				render(t_mlx *mlx);
 ** keyboard.c
 */
 int 			hook_key_up(int button, t_mlx *mlx);
-
+int				hook_key_down(int button, t_mlx *mlx);
 /*
 ** draw.c
 */
@@ -139,7 +140,8 @@ void			set_mlx_img_ptr(t_mlx *mlx);
 /*
 ** color_pick_gui.c
 */
-void    color_pick(t_mlx *mlx, int x, int y, int button);
+void    color_pick_gui(t_mlx *mlx, int x, int y, int button);
+void	color_pick(t_mlx *mlx, int x, int y, int button);
 void    deploy_color_gui(t_mlx *mlx);
 void    hide_color_gui(t_mlx *mlx);
 

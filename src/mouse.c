@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:12:59 by amontano          #+#    #+#             */
-/*   Updated: 2019/03/07 11:58:28 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/13 00:30:05 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	hook_mouse_down(int button, int x, int y, t_mlx *mlx)
 int	hook_mouse_up(int button, int x, int y, t_mlx *mlx)
 {
 	mlx->mouse->is_down &= ((mlx->mouse->is_down & 0x30) | ~(1 << button));
-	if (mlx->mode == COLOR_PICK && (button == MOUSE_1 || button == MOUSE_2))
+	if ((mlx->mode == COLOR_PICK_GUI || mlx->color_gui_on) && (button == MOUSE_1 || button == MOUSE_2))
+		color_pick_gui(mlx, x, y, button);
+	else if ((mlx->mode == COLOR_PICK || mlx->color_gui_on) && (button == MOUSE_1 || button == MOUSE_2))
 		color_pick(mlx, x, y, button);
 	else if (mlx->mode == BRUSH && button == 2)
 		mlx->color_current = mlx->color_1;

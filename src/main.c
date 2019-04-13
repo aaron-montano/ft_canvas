@@ -6,7 +6,7 @@
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:26:46 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/07 13:56:20 by amontano         ###   ########.fr       */
+/*   Updated: 2019/04/13 00:16:16 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_mlx	*mlx_dispose(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->img)
 		del_img(mlx, mlx->img);
+	if (mlx->color_gui)
+		del_img(mlx, mlx->color_gui);
 	if (mlx->mouse)
 		ft_memdel((void **)&mlx);
 	if (mlx->buf)
@@ -52,12 +54,16 @@ t_mlx	*init(void)
 			|| (!(mlx->buf = stack_init()))									\
 			|| (!(mlx->redo_buf = stack_init()))							\
 			|| (!(mlx->color_gui = new_img(mlx, PALLET_W, PALLET_H)))		\
-			|| (!(mlx->color_gui->img = mlx_xpm_file_to_image(mlx->mlx, PALLET, &mlx->pw, &mlx->ph)))
+			|| (!(mlx->color_gui->img = \
+					mlx_xpm_file_to_image(mlx->mlx, PALLET, &mlx->pw, &mlx->ph)))
 		)
 	{
 		ft_putendl("mlx falied to init");
 		return (mlx_dispose(mlx));
 	}
+	mlx->color_gui->ptr = \
+		mlx_get_data_addr(mlx->color_gui->img, &mlx->color_gui->bpp, &mlx->color_gui->stride, &mlx->color_gui->endian);
+	mlx->color_gui->bpp /= 8;
 	mlx->brush_size = 1;
 	mlx->color_gui_on = 0;
 	return (mlx);
@@ -75,6 +81,7 @@ int		main(void)
 	mlx->color_1 = 0x000000;
 	mlx->color_2 = 0xFF00FF;
 	mlx_hook(mlx->win, 3, 0, hook_key_up, mlx);
+	mlx_hook(mlx->win, 2, 0, hook_key_down, mlx);
 	mlx_hook(mlx->win, 4, 0, hook_mouse_down, mlx);
 	mlx_hook(mlx->win, 5, 0, hook_mouse_up, mlx);
 	mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);
