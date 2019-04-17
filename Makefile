@@ -6,7 +6,7 @@
 #    By: amontano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/06 16:54:47 by amontano          #+#    #+#              #
-#    Updated: 2019/03/07 12:36:49 by amontano         ###   ########.fr        #
+#    Updated: 2019/04/14 20:42:11 by amontano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,19 @@ LIBFT = ./libft
 MLX = ./minilibx_macos
 
 
-SOURCE = main.c		\
-		 mouse.c	\
-		 img.c		\
-		 render.c	\
-		 keyboard.c	\
-		 draw.c		\
-		 frame_buffer.c	\
-		 color_pick_gui.c \
+SOURCE = main.c				\
+		 mouse.c			\
+		 img.c				\
+		 render.c			\
+		 keyboard.c			\
+		 draw.c				\
+		 draw_line.c		\
+		 draw_ellipse.c		\
+		 draw_bucket.c		\
+		 util.c				\
+		 frame_buffer.c		\
+		 color_pick_gui.c	\
+		 init_store.c		\
 
 
 SRC = $(addprefix $(SRCDIR)/, $(SOURCE))
@@ -59,6 +64,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+install: all clean
 
 re: fclean all
 

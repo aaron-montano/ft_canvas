@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   log.c                                              :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amontano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 20:18:29 by amontano          #+#    #+#             */
-/*   Updated: 2019/04/11 20:18:30 by amontano         ###   ########.fr       */
+/*   Created: 2018/04/24 23:21:19 by amontano          #+#    #+#             */
+/*   Updated: 2018/04/25 00:04:05 by amontano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "../includes/ft_canvas.h"
-
-
-void	dump_to_console(t_mlx *params)
+void	ft_putendl(char const *s)
 {
-	system("clear");
+	ft_putstr(s);
+	ft_putchar('\n');
 }

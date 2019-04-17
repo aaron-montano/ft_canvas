@@ -31,7 +31,7 @@ void	undo(t_mlx *mlx)
 {
 	if (mlx->buf->top->next)
 	{
-		push(mlx->redo_buf,  pop(mlx->buf));	
+		push(mlx->redo_buf, pop(mlx->buf));
 		set_mlx_img_ptr(mlx);
 	}
 }
@@ -40,7 +40,7 @@ void	redo(t_mlx *mlx)
 {
 	if (!stack_isempty(mlx->redo_buf))
 	{
-		push(mlx->buf, pop(mlx->redo_buf));		
+		push(mlx->buf, pop(mlx->redo_buf));
 		set_mlx_img_ptr(mlx);
 	}
 }

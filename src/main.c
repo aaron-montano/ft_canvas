@@ -12,74 +12,45 @@
 
 #include "ft_canvas.h"
 
-int		hook_close(void)
+int				hook_close(void)
 {
 	exit(0);
 }
 
-void	error(char *str)
+void			error(char *str)
 {
 	ft_putendl(str);
 	hook_close();
 }
 
-t_mlx	*mlx_dispose(t_mlx *mlx)
+static void		default_values(t_mlx *mlx)
 {
-	if (mlx->win)
-		mlx_destroy_window(mlx->mlx, mlx->win);
-	if (mlx->img)
-		del_img(mlx, mlx->img);
-	if (mlx->color_gui)
-		del_img(mlx, mlx->color_gui);
-	if (mlx->mouse)
-		ft_memdel((void **)&mlx);
-	if (mlx->buf)
-		stack_dispose(mlx, mlx->buf);
-	if (mlx->redo_buf)
-		stack_dispose(mlx, mlx->redo_buf);
-	return (NULL);
-}
-
-t_mlx	*init(void)
-{
-	t_mlx *mlx;
-
-	if (!(mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx))))
-		return (NULL);
-	if (!(mlx->mlx = mlx_init())											\
-			|| (!(mlx->win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, 		\
-						"ft_canvas -- amontano")))							\
-			|| (!(mlx->img = new_img(mlx, WIN_W, WIN_H)))					\
-			|| (!(mlx->mouse = (t_mouse *)ft_memalloc(sizeof(t_mouse))))	\
-			|| (!(mlx->buf = stack_init()))									\
-			|| (!(mlx->redo_buf = stack_init()))							\
-			|| (!(mlx->color_gui = new_img(mlx, PALLET_W, PALLET_H)))		\
-			|| (!(mlx->color_gui->img = \
-					mlx_xpm_file_to_image(mlx->mlx, PALLET, &mlx->pw, &mlx->ph)))
-		)
-	{
-		ft_putendl("mlx falied to init");
-		return (mlx_dispose(mlx));
-	}
-	mlx->color_gui->ptr = \
-		mlx_get_data_addr(mlx->color_gui->img, &mlx->color_gui->bpp, &mlx->color_gui->stride, &mlx->color_gui->endian);
-	mlx->color_gui->bpp /= 8;
-	mlx->brush_size = 1;
-	mlx->color_gui_on = 0;
-	return (mlx);
-}
-
-int		main(void)
-{
-	t_mlx *mlx;
-
-	if (!(mlx = init()))
-		error("mlx failed to init");
-	clear_img(mlx->img);
-	fill_img(mlx->img, 0xe0e0e0);
+	fill_img(mlx->img, 0xe0e0e0, WIN_W, WIN_H);
 	update_buf(mlx);
 	mlx->color_1 = 0x000000;
 	mlx->color_2 = 0xFF00FF;
+	mlx->mode = BRUSH;
+}
+
+void			usage(void)
+{
+	ft_putstr("1\tBrush\n2\tLine\n3\tRectangle\n4\tEllipse\n5\tBucket\n");
+	ft_putstr("6\tEyedrop\n\nSpace\tPallete Toggle\nNum0\tPallete Toggle\n\n");
+	ft_putstr("W\tBrush Size Up\nNum+\tBrush Size Up\n");
+	ft_putstr("S\tBrush Size Down\nNum+\tBrush Size Down\n\n");
+	ft_putstr("Z\tUndo\nY\tRedo\n\\\tReset\nESC\tExit\n");
+}
+
+int				main(void)
+{
+	t_mlx *mlx;
+
+	usage();
+	if (!(mlx = init()))
+		error("mlx failed to init");
+	default_values(mlx);
+	fill_img(mlx->c_ui_p, mlx->color_1, 64, 64);
+	fill_img(mlx->c_ui_s, mlx->color_2, 64, 64);
 	mlx_hook(mlx->win, 3, 0, hook_key_up, mlx);
 	mlx_hook(mlx->win, 2, 0, hook_key_down, mlx);
 	mlx_hook(mlx->win, 4, 0, hook_mouse_down, mlx);
@@ -90,5 +61,6 @@ int		main(void)
 	mlx_loop(mlx->mlx);
 	stack_dispose(mlx, mlx->buf);
 	stack_dispose(mlx, mlx->redo_buf);
+	mlx_dispose(mlx);
 	return (0);
 }

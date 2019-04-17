@@ -1,6 +1,4 @@
 *.o
 obj/
-libft/
-minilibx_macos/
 *.swp
 .vscode/
